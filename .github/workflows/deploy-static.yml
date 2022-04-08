@@ -17,12 +17,9 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
-      - name: List Storage Containers
-        run: |-
-          az storage container list --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }}
       - name: Delete Existing Site
         run: |-
-          az storage blob delete-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }}
+          az storage blob delete-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} --source '$web' --pattern '*'
       - name: Copy Current Site
         run: |-
           az storage blob upload-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }} --source "$PWD" --pattern '*' --destination '$web'
