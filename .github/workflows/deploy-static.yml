@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Remove Non-serving Files
         run: |-
-          rm -rf .git .gitignore .codesandbox .github
+          rm -rf .git .gitignore .codesandbox sandbox.config.json .github
       - name: Log In To Azure
         uses: azure/login@v1
         with:
