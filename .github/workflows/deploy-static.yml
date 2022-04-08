@@ -16,4 +16,4 @@ jobs:
           creds: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
       - name: List Storage Containers
         run: |-
-          az storage container list
+          az storage container list --connection-string ${{ secrets.STORAGE_ACCOUNT_CONNECTION_STRING }}
